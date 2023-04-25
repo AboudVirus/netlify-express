@@ -1,6 +1,5 @@
 const express = require("express");
 const serverless = require("serverless-http");
-const moment = require("moment");
 const app = express();
 const router = express.Router();
 
@@ -15,7 +14,6 @@ app.get('/', async (req, res, next) =>  {
  // getHome.run(req, res, next)
 
   res.render('page/Home', { 
-    moment: moment,
     req: req,
     app: false, 
     url_scope: '/',
