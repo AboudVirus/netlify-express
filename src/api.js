@@ -7,7 +7,7 @@ const fetch = require('node-fetch');
 const config = require('../config')
 const app = express();
 const router = express.Router();
-
+ const ejs = require('ejs');
 app.set('view engine', 'ejs');
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
@@ -18,6 +18,13 @@ app.use(session(config.settings.session))
 app.get('/v2', async (req, res, next) =>  {
  // getHome.run(req, res, next)
 
+const template = ejs.compile('<h1>Hello, <%= name %>!</h1>');
+const data = { name: 'John' };
+const html = template(data);
+
+// قم بعرض النموذج النهائي في الاستجابة الخاصة بك
+res.send(html);
+/*
   res.render('page/Home', { 
     req: req,
     app: false, 
@@ -25,6 +32,7 @@ app.get('/v2', async (req, res, next) =>  {
     title: 'My Express App',
     page_name: 'Home'
   });
+  */
 });
 
 
