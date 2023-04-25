@@ -3,6 +3,7 @@ const serverless = require("serverless-http");
 const session = require('express-session');
 const layouts = require('express-ejs-layouts');
 const moment = require("moment");
+const fs = require('fs');
 const fetch = require('node-fetch');
 const config = require('../config')
 const app = express();
@@ -17,8 +18,8 @@ app.use(session(config.settings.session))
 
 app.get('/v2', async (req, res, next) =>  {
  // getHome.run(req, res, next)
-
-const template = ejs.compile('<h1>Hello, <%= name %>!</h1>');
+const v1 = fs.readFileSync(__dirname+'views/page/Home.ejs', 'utf-8');
+const template = ejs.compile(v1)//('<h1>Hello, <%= name %>!</h1>');
 const data = { name: 'John' };
 const html = template(data);
 
@@ -33,11 +34,11 @@ res.send(html);
 
 router.get("/", (req, res) => {
  // res.json({hello: "hi!"});
- const template = ejs.compile('<h1>Hello, <%= name %>!</h1>');
+ const v1 = fs.readFileSync(__dirname+'views/page/Home.ejs', 'utf-8');
+ const template = ejs.compile(v1)//('<h1>Hello, <%= name %>!</h1>');
  const data = { name: 'John' };
  const html = template(data);
  
- // قم بعرض النموذج النهائي في الاستجابة الخاصة بك
  res.send(html);
 });
 
