@@ -33,13 +33,12 @@ res.send(html);
 
 router.get("/", (req, res) => {
  // res.json({hello: "hi!"});
-   res.render('page/Home', { 
-    req: req,
-    app: false, 
-    url_scope: '/',
-    title: 'My Express App',
-    page_name: 'Home'
-   });
+ const template = ejs.compile('<h1>Hello, <%= name %>!</h1>');
+ const data = { name: 'John' };
+ const html = template(data);
+ 
+ // قم بعرض النموذج النهائي في الاستجابة الخاصة بك
+ res.send(html);
 });
 
 app.use(`/.netlify/functions/api`, router);
