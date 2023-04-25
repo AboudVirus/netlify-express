@@ -25,22 +25,21 @@ const html = template(data);
 // قم بعرض النموذج النهائي في الاستجابة الخاصة بك
 res.send(html);
 /*
-  res.render('page/Home', { 
-    req: req,
-    app: false, 
-    url_scope: '/',
-    title: 'My Express App',
-    page_name: 'Home'
-  });
+
   */
 });
 
 
 
 router.get("/", (req, res) => {
-  res.json({
-    hello: "hi!"
-  });
+ // res.json({hello: "hi!"});
+   res.render('page/Home', { 
+    req: req,
+    app: false, 
+    url_scope: '/',
+    title: 'My Express App',
+    page_name: 'Home'
+   });
 });
 
 app.use(`/.netlify/functions/api`, router);
