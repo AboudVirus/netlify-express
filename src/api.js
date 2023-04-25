@@ -15,7 +15,7 @@ app.use(session(config.settings.session))
 //app.use(expressLayouts);
 //app.use(express.static(path.join(__dirname,'public')))
 
-app.get('/', async (req, res, next) =>  {
+app.get('/v2', async (req, res, next) =>  {
  // getHome.run(req, res, next)
 
   res.render('page/Home', { 
