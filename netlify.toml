@@ -1,5 +1,14 @@
 [build]
   functions = "functions"
 
+  dependencies = [
+    "moment",
+    "lodash",
+    "node-fetch",
+    "express-session",
+    "express-ejs-layouts",
+  ]
+
 [dev]
   publish = "dist"
+

@@ -1,5 +1,10 @@
 const express = require("express");
 const serverless = require("serverless-http");
+const session = require('express-session');
+const layouts = require('express-ejs-layouts');
+const moment = require("moment");
+const fetch = require('node-fetch');
+const config = require('../config')
 const app = express();
 const router = express.Router();
 
@@ -8,7 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 app.use(session(config.settings.session))
 //app.use(expressLayouts);
-app.use(express.static(path.join(__dirname,'public')))
+//app.use(express.static(path.join(__dirname,'public')))
 
 app.get('/', async (req, res, next) =>  {
  // getHome.run(req, res, next)
