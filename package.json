@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.16.4",
+    "encoding": "^0.1.13",
     "netlify-lambda": "^1.4.3",
     "serverless-http": "^1.9.1",
     "body-parser": "^1.20.1",
