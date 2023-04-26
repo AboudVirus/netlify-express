@@ -66,11 +66,73 @@ router.get("/", (req, res) => {
       //var nav = include('./../cdn/nav-login')
       var buttons = '<a class="btn btn-dark" style="font-weight: bold;" onclick="window.location.assign('/account?p=l')"> تسجيل دخول </a> <a class="btn btn-dark" style="font-weight: bold;" onclick="window.location.assign('/account?p=r')"> انشاء حساب </a>'
     }
-    console.log("iinihjbihbhi")
       %>
  
   <div id="layer2" class="layer2_class">
-    <%- include('./../cdn/nav') %>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid container">
+    <a class="navbar-brand" href="/">
+      <img src="/images/icons/icon.png" alt="" width="50" class="rounded-circle"> &nbsp; <span>FirstHelper</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/"><i class="fa-solid fa-house fa-lg"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ZainCash"><i class="fa-solid fa-comments-dollar fa-lg"></i> ZainCash</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/obstruction"><i class="fa-solid fa-person-military-pointing fa-lg"></i> Obstruction</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/fuel-filling"><i class="fa-solid fa-gas-pump fa-lg"></i> FuelFilling</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contribution"><i class="fa-solid fa-handshake-angle fa-lg"></i> Contribution</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/support"><i class="fa-solid fa-headset fa-lg"></i> support</a>
+        </li>
+      </ul>
+
+      <div class="d-flex ml-auto" id="headerlogin">
+
+        <% if (req.session.user) { %>
+
+            <% if (req.session.user.isAdmin) {%>
+              <li class="nav-item dropdown" style="list-style: none;">
+                <a class="nav-link btn btn-outline-secondary login" href="/dashboard/"><i class="fa-solid fa-panel-ews"></i> Panel</a>
+              </li>
+            <%}else{%>
+          <li class="nav-item dropdown" style="list-style: none;">
+            <a class="nav-link btn btn-outline-secondary login"><i class="fa-solid fa-bell"></i></a>
+          </li>
+          <%}%>
+
+          <li class="nav-item dropdown" style="list-style: none;">
+              <a class="nav-link btn btn-outline-secondary login" href="/account/me">
+                <i class="fa-solid fa-user"></i> <%= req.session.user.firstname%>
+              </a>
+          </li>
+
+
+       <% }else{ %>
+        
+        <li class="nav-item" style="list-style: none;">
+          <a class="nav-link btn btn-outline-secondary login" href="/account">Login</a>
+        </li>
+
+        <%}%>
+
+      </div>
+    </div>
+  </div>
+</nav>
      <div class="jumbotron text-center bg-transparent">
          <div class="text-center">
        <h3 class="wh">ماهو <span class="Hbot">المساعد الأول</span> ؟</h3>
@@ -127,7 +189,7 @@ router.get("/", (req, res) => {
 
  <h1>Hello, <%= name %>!</h1>
  `);
- const data = { name: 'John' };
+ const data = { name: 'John', req: req,page_name: "H" };
  const html = template(data);
  
  res.send(html);
